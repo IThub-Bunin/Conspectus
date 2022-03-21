@@ -1,0 +1,32 @@
+.lesson-content__tasks {
+    height: 50px;
+    background-color: #0080FF;
+    display: flex;
+    align-items: center;
+}
+
+.lesson-content__tasks > * {
+    color: #FFF;
+}
+
+.title_status_wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 200px);
+    padding: 0px 10px;
+}
+
+.task_title {
+    font-size: 25px;
+}
+
+.task_status {
+    font-size: 15px;
+    font-style: italic;
+}
+
+.button_task_conspectus {
+    height: inherit;
+    width: 200px;
+    background-color: #00000015;
+}

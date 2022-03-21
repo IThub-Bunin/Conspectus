@@ -1,1 +1,32 @@
+{
+    "manifest_version": 2,
+    "name": "Conspectus",
+    "version": "1.0",
 
+    "description": "A text editor for Bulgakov's learning materials",
+    
+    "content_scripts": [
+        {
+            "matches": ["*://ithub.bulgakov.app/student", "*://ithub.bulgakov.app/lessons/*", "*://ithub.bulgakov.app/schedule", "*://ithub.bulgakov.app/users/*", "*://ithub.bulgakov.app/me/*", "*://ithub.bulgakov.app/conspectus/*"],
+            "js": ["bulgakov_pages/addConspectusTopMenu.js"]
+        },
+        {
+            "matches": ["*://ithub.bulgakov.app/lessons/*"],
+            "js": ["bulgakov_pages/replaceAreaToButton.js"],
+            "css": ["bulgakov_pages/style.css"]
+        },
+        {
+            "matches": ["*://ithub.bulgakov.app/conspectus/*"],
+            "js": ["editorPage/editorPage.js"],
+            "css": ["editorPage/style.css"]
+        }
+    ],
+
+    "browser_action": {
+        "icons": {
+            "48": "icons/pen-svgrepo-com.svg"
+        },
+        "default_popup": "popup/conspectus.html"
+      }
+
+}

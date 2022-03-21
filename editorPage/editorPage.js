@@ -1,0 +1,1 @@
+document.querySelector(".app__content").innerHTML = "Hello World";
