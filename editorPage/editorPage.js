@@ -1,1 +1,3 @@
-document.querySelector(".app__content").innerHTML = "Hello World";
+document.querySelector(".app__content").innerHTML = `
+    <div>Hello world</div>
+`;

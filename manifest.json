@@ -4,7 +4,9 @@
     "version": "1.0",
 
     "description": "A text editor for Bulgakov's learning materials",
-    
+
+    "permissions": ["tabs"],
+
     "content_scripts": [
         {
             "matches": ["*://ithub.bulgakov.app/student", "*://ithub.bulgakov.app/lessons/*", "*://ithub.bulgakov.app/schedule", "*://ithub.bulgakov.app/users/*", "*://ithub.bulgakov.app/me/*", "*://ithub.bulgakov.app/conspectus/*"],
@@ -12,7 +14,7 @@
         },
         {
             "matches": ["*://ithub.bulgakov.app/lessons/*"],
-            "js": ["bulgakov_pages/replaceAreaToButton.js"],
+            "js": ["bulgakov_pages/addButton.js"],
             "css": ["bulgakov_pages/style.css"]
         },
         {
