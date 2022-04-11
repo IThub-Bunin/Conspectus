@@ -9,7 +9,7 @@
 
     "content_scripts": [
         {
-            "matches": ["*://ithub.bulgakov.app/student", "*://ithub.bulgakov.app/lessons/*", "*://ithub.bulgakov.app/schedule", "*://ithub.bulgakov.app/users/*", "*://ithub.bulgakov.app/me/*", "*://ithub.bulgakov.app/conspectus/*"],
+            "matches": ["*://ithub.bulgakov.app/student", "*://ithub.bulgakov.app/lessons/*", "*://ithub.bulgakov.app/schedule", "*://ithub.bulgakov.app/users/*", "*://ithub.bulgakov.app/me/*", "*://ithub.bulgakov.app/subjects/*", "*://ithub.bulgakov.app/conspectus/*"],
             "js": ["bulgakov_pages/addConspectusTopMenu.js"]
         },
         {
