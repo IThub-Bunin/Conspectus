@@ -22,13 +22,13 @@
   height: calc(100% - 50px);
 }
 
-.files_list {
+.files_menu {
   width: 100%;
   max-height: 100%;
   overflow-y: auto;
 }
 
-.files_list > .item:first-child > .item_label {
+.files_menu > .item:first-child > .item_label {
   border-radius: 10px 10px 0 0;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .item_label__active {
-  background-color: #ddd;
+  box-shadow: 0px 15px 10px -18px #00000050;
 }
 
 .children__active {
@@ -61,8 +61,14 @@
 
 .arrow_icon {
   display: inline-block;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
+  transition: 0.5s;
+}
+
+.item_label__active > .arrow_icon {
+  transform: rotate(180deg);
+  transition: 0.5s;
 }
 
 .files_bar {
@@ -86,7 +92,6 @@
 
 .label {
   height: 100%;
-  /* min-width: 120px; */
   padding: 0 20px;
   background-color: #ddd;
   border-radius: 10px 10px 0 0;

@@ -3,7 +3,7 @@ document.querySelector('.app__content').innerHTML = `
     <div>
         <div class='conspects_menu'>
             <div class="list_wrapper">
-                <div class='files_list'>
+                <div class='files_menu'>
                 </div>
             </div>
             <div class='files_bar'></div>
