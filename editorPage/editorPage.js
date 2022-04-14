@@ -2,7 +2,10 @@
 document.querySelector('.app__content').innerHTML = `
     <div>
         <div class='conspects_menu'>
-            <div class='files_list'></div>
+            <div class="list_wrapper">
+                <div class='files_list'>
+                </div>
+            </div>
             <div class='files_bar'></div>
         </div>
         <div class='editor_block'>
@@ -17,8 +20,6 @@ document.querySelector('.app__content').innerHTML = `
 
 // функция для изменения "открытой вкладки"
 function makePrimary(event) {
-    console.log(event.target);
-
     primary_label.classList.remove('primary_label');
     event.target.classList.add('primary_label');
     primary_label = event.target;

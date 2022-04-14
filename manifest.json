@@ -19,7 +19,7 @@
         },
         {
             "matches": ["*://ithub.bulgakov.app/conspectus/*"],
-            "js": ["editorPage/editorPage.js", "editorPage/menuButtonStyle.js"],
+            "js": ["editorPage/editorPage.js", "editorPage/menuButtonStyle.js", "editorPage/generateConspList.js"],
             "css": ["editorPage/style.css"]
         }
     ],
@@ -29,6 +29,11 @@
             "48": "icons/pen-svgrepo-com.svg"
         },
         "default_popup": "popup/popup.html"
-      }
+    },
+
+    "web_accessible_resources": [{
+        "resources": ["icons/angle-arrow-down_icon-icons.com_73683.svg"],
+        "matches": ["https://ithub.bulgakov.app/*"]
+    }]
 
 }
