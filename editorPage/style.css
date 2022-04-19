@@ -24,8 +24,24 @@
 
 .files_menu {
   width: 100%;
+  margin-top: 15px;
   max-height: 100%;
   overflow-y: auto;
+}
+
+.files_menu::-webkit-scrollbar {
+  width: 0.2em;
+  position: absolute;
+}
+
+.files_menu::-webkit-scrollbar-track {
+  height: 100px;
+  position: absolute;
+}
+
+.files_menu::-webkit-scrollbar-thumb {
+  position: absolute;
+  background-color: #0080ff;
 }
 
 .files_menu > .item:first-child > .item_label {
