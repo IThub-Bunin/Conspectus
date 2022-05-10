@@ -3,7 +3,7 @@
     "name": "Conspectus",
     "version": "1.0",
 
-    "description": "Редактор конспектов внутри Булгакова",
+    "description": "Редактор конспектов",
 
     "permissions": ["tabs"],
 
@@ -19,8 +19,8 @@
         },
         {
             "matches": ["*://ithub.bulgakov.app/conspectus/*"],
-            "js": ["editorPage/editorPage.js", "editorPage/menuButtonStyle.js", "editorPage/generateConspList.js"],
-            "css": ["editorPage/style.css"]
+            "js": ["editorPage/menuButtonStyle.js", "editor-md/jquery.min.js", "editor-md/editormd.min.js", "editorPage/editorPage.js", "editorPage/generateConspList.js", "editorPage/generateEditor.js"],
+            "css": ["editorPage/style.css", "editor-md/editormd.css", "editor-md/lib/codemirror/codemirror.min.css"]
         }
     ],
 

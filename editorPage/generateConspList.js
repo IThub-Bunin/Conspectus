@@ -1,54 +1,19 @@
+let res = ["file1", "file2", "file3"];
+
 let data_json = `
     {   "label": "Список конспектов",
-        "children": [
-            {"label": "folder1",
-            "children": [
-                {"label": "file11"},
-                {"label": "file12"},
-                {"label": "file11"},
-                {"label": "file12"},
-                {"label": "file11"},
-                {"label": "file12"},
-                {"label": "file11"},
-                {"label": "file12"},
-                {"label": "file11"},
-                {"label": "file12"},
-                {"label": "file11"},
-                {"label": "file12"},
-                {"label": "file11"},
-                {"label": "file12"},
-                {"label": "file11"},
-                {"label": "file12"},
-                {"label": "file11"},
-                {"label": "file12"},
-                {"label": "file11"},
-                {"label": "file12"},
-                {"label": "file11"},
-                {"label": "file12"},
-                {"label": "file13"}
-            ]},
+        "children": [`;
 
-            {"label": "folder1",
-            "children": [
-                {"label": "file11"},
-                {"label": "file12"},
-                {"label": "file13"}
-            ]},
+for (let consp of res) {
+    data_json += `{"label": "${consp}"},`
+}''
 
-            {"label": "folder2",
-            "children": [
-                {"label": "file21",
-                "children": [
-                    {"label": "file11"},
-                    {"label": "file12"},
-                    {"label": "file13"}
-                ]},
-                {"label": "file22"},
-                {"label": "file23"}
-            ]}
+data_json = data_json.slice(0, data_json.length-1);
+
+data_json += `
         ]
     }
-`
+`;
 
 let data = JSON.parse(data_json);
 
@@ -73,9 +38,33 @@ function changeVisibility() {
     }
 }
 
+function removeLabel(event) {
+    labels.pop(labels.indexOf(event.target.parentNode.firstChild.innerHTML));
+    console.log(event.target.parentNode);
+    labels_el.removeChild(event.target.parentNode.parentNode)
+}
+
+function addLabel(event) {
+    if(!labels.includes(event.target.innerHTML)) {
+        labels_el.innerHTML += `<div class='label'><p>${event.target.innerHTML}</p><button><svg class="arrow_icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        width="284.929px" height="284.929px" viewBox="0 0 100 100" style="enable-background:new 0 0 284.929 284.929;"
+        xml:space="preserve"><g><path d="M7 25 L50 65 L93 25" stroke="black" stroke-width="12" fill="transparent" stroke-linecap="round" /></g></svg></button></div>`;
+        labels_el.lastChild.lastChild.addEventListener('click', removeLabel);
+        if (labels.length > 0) {
+            primary_label.classList.remove('primary_label');
+        }
+        primary_label = labels_el.lastChild;
+        primary_label.classList.add('primary_label');
+        labels.push(event.target.innerHTML);
+    }
+}
+
 Array.from(document.querySelectorAll('.item_label')).forEach(element => {
     if (element.nextSibling) {
         element.addEventListener('click', changeVisibility);
+    }
+    else {
+        element.addEventListener('click', addLabel);
     }
 });
 
