@@ -11,6 +11,7 @@ function getConspectsOf(username) {
     return fetch(`${urlStart}GetConspectsOfUser/${username.trim()}`)
         .then(res => res.text())
         .then(data => data.split('>'))
+        .then(arr => {for (let i = 0; i < arr.length; i++) {consp = arr[i]; arr[i] = consp.slice(1, consp.length - 3)};return arr})
         .catch((error) => console.log(error))
 }
 
@@ -36,10 +37,7 @@ function createConspect(username, conspect) {
 }
 
 function setConspectData(username, conspect, data) {
-    conspect = cur_conspect.name;
-    cur_conspect.data = document.querySelector("textarea").value.replace("\n", "%0A");
-    data = cur_conspect.data;
-    fetch(`${urlStart}SetConspectData/${username.trim()}/${conspect.trim().slice(1, conspect.length - 3)}/${data.trim()}`, {
+    fetch(`${urlStart}SetConspectData/${username.trim()}/${conspect.trim()}/${data.trim()}`, {
         method: 'POST'
     }).then(res => res.status)
     .catch((error) => console.log(error));

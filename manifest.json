@@ -14,7 +14,7 @@
         },
         {
             "matches": ["*://ithub.bulgakov.app/lessons/*"],
-            "js": ["bulgakov_pages/addButton.js"],
+            "js": ["bulgakov_pages/addButton.js", "editorPage/conspectus_api.js"],
             "css": ["bulgakov_pages/style.css"]
         },
         {

@@ -36,10 +36,24 @@ document.querySelector('.app__content').innerHTML = `
 let labels = [];
 let labels_el = document.querySelector('.labels');
 
-let active_conspects = [];
+let temp_conspects = {};
 let cur_conspect = {"name": null, "data": null};
 
-function removeLabel(event) {
+function removeLabel(event, element) {
+    event.stopPropagation();
+    element_index = labels.indexOf(element.firstChild.innerHTML);
+    if (labels.length > 1) {
+        if (Array.from(element.classList).includes("primary_label")) {
+            makePrimary(element.previousElementSibling || element.nextElementSibling);
+        }
+    }
+    else {
+        cur_conspect = {"name": null, "data": null};
+        document.querySelector("textarea").value = "";
+    }
+    labels.pop(element_index);
+    temp_conspects[element.firstChild.innerHTML] = null;
+    labels_el.removeChild(element);
     // labels.pop(labels.indexOf(event.target.parentNode.firstChild.innerHTML));
     // labels_el.removeChild(event.target.parentNode.parentNode);
     // active_conspects.pop(active_conspects.indexOf(cur_conspect));
@@ -57,13 +71,13 @@ function makePrimary(label) {
     if (!Array.from(label.classList).includes("primary_label")) {
         primary_label = document.querySelector(".primary_label");
         if (primary_label) {
-            active_conspects[labels.indexOf(primary_label.firstChild.innerHTML)]["data"] = document.querySelector("textarea").value;
+            temp_conspects[primary_label.firstChild.innerHTML] = document.querySelector("textarea").value;
             primary_label.classList.remove("primary_label");
         }
         label.classList.add("primary_label");
         consp_name = label.firstChild.innerHTML;
         cur_conspect["name"] = consp_name;
-        cur_conspect["data"] = active_conspects[labels.indexOf(consp_name)]["data"];
+        cur_conspect["data"] = temp_conspects[consp_name];
         document.querySelector("textarea").value = cur_conspect["data"];
     }
     // console.log(cur_conspect);
@@ -98,12 +112,14 @@ function openConspect(event) {
     if(!labels.includes(consp_name)) {
         labels_el.innerHTML += `<div class='label'><p>${consp_name}</p><button><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="cross"><line class="cls-1" x1="7" x2="25" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="25" y2="7"/></g></svg></button></div>`;
         labels.push(consp_name);
-        active_conspects[labels.length - 1] = {"name": null, "data": null};
-        active_conspects[labels.length - 1]["name"] = consp_name;
-        getConspectData(username, consp_name.slice(1, consp_name.length - 3)).then(text => {
-            active_conspects[labels.length - 1]["data"] = text;
+        temp_conspects[consp_name] = null;
+        // active_conspects.push({"name": null, "data": null});
+        // active_conspects[labels.length - 1]["name"] = consp_name;
+        getConspectData(username, consp_name).then(text => {
+            temp_conspects[consp_name] = text;
             Array.from(document.querySelectorAll('.label')).forEach(element => {
-                element.onclick = (event) => {makePrimary(event.target)}
+                element.onclick = () => {makePrimary(element)}
+                element.lastChild.onclick = (event) => {removeLabel(event, element)}
             });
             makePrimary(document.querySelector('.labels>:last-child'));
         });
@@ -111,4 +127,4 @@ function openConspect(event) {
 }
 
 document.querySelector(".new_file").addEventListener("click", () => {conspect = prompt("Введите название конспекта", "RandomName"); createConspect(username, conspect)});
-document.querySelector(".save_button").addEventListener("click", () => {setConspectData(username)});
+document.querySelector(".save_button").addEventListener("click", () => {cur_conspect.data = document.querySelector("textarea").value.replace("\n", "%0A");conspect = cur_conspect.name; data = cur_conspect.data; setConspectData(username, conspect, data)});
