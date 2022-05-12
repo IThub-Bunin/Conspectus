@@ -32,7 +32,6 @@ document.querySelector('.app__content').innerHTML = `
     </div>
 `;
 
-// Список названий ярлыков, элемент-обёртка для ярлыков, выбранный ярлык
 let labels = [];
 let labels_el = document.querySelector('.labels');
 
@@ -54,17 +53,6 @@ function removeLabel(event, element) {
     labels.pop(element_index);
     temp_conspects[element.firstChild.innerHTML] = null;
     labels_el.removeChild(element);
-    // labels.pop(labels.indexOf(event.target.parentNode.firstChild.innerHTML));
-    // labels_el.removeChild(event.target.parentNode.parentNode);
-    // active_conspects.pop(active_conspects.indexOf(cur_conspect));
-    
-    // if (labels.length >= 1) {
-    //     document.querySelector(".labels>:last-child").classList.add('primary_label');
-    //     active_conspects.forEach(consp => {if (consp.name == labels_el.lastChild.firstChild.innerHTML) {cur_conspect = consp}});
-    // }
-    // else { 
-    //     cur_conspect = {"name": null, "data": null}
-    // }
 }
 
 function makePrimary(label) {
@@ -80,34 +68,9 @@ function makePrimary(label) {
         cur_conspect["data"] = temp_conspects[consp_name];
         document.querySelector("textarea").value = cur_conspect["data"];
     }
-    // console.log(cur_conspect);
-    // if (document.querySelector(".primary_label")) {
-    //     document.querySelector(".primary_label").classList.remove('primary_label');
-    // }
-    // event.element.classList.add('primary_label');
-    // active_conspects.forEach(consp => {if (consp.name == event.element.innerHTML) {cur_conspect = consp}});
-    // console.log(cur_conspect);
-    // document.querySelector("textarea").innerHTML = cur_conspect.data;
 }
 
 function openConspect(event) {
-    // if(!labels.includes(event.target.innerHTML)) {
-    //     labels_el.innerHTML += `<div class='label'><p>${event.target.innerHTML}</p><button><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="cross"><line class="cls-1" x1="7" x2="25" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="25" y2="7"/></g></svg></button></div>`;
-    //     document.querySelector(".labels>:last-child>:last-child").addEventListener('click', removeLabel);
-    //     document.querySelector(".labels>:last-child").addEventListener('click', makePrimary);
-    //     if (document.querySelector(".primary_label")) {
-    //         document.querySelector(".primary_label").classList.remove('primary_label');
-    //     }
-    //     document.querySelector(".labels>:last-child").classList.add('primary_label');
-    //     labels.push(event.target.innerHTML);
-    //     // data = getConspectData(username, event.target.innerHTML);
-    //     // data = getConspectData(username, event.target.innerHTML);
-
-    //     document.querySelector("textarea").innerHTML = event.target.innerHTML;
-    
-    //     cur_conspect = {"name": event.target.innerHTML, "data": event.target.innerHTML};
-    //     active_conspects.push(cur_conspect);
-    // }
     consp_name = event.target.innerHTML;
     if(!labels.includes(consp_name)) {
         labels_el.innerHTML += `<div class='label'><p>${consp_name}</p><button><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="cross"><line class="cls-1" x1="7" x2="25" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="25" y2="7"/></g></svg></button></div>`;

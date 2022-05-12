@@ -25,9 +25,6 @@
     ],
 
     "action": {
-        "icons": {
-            "48": "icons/pen-svgrepo-com.svg"
-        },
         "default_popup": "popup/popup.html"
     }
 
